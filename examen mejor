@@ -1,0 +1,88 @@
+Algoritmo SueldoDocente
+	
+	definir nombreDocente, cargo, mesActual Como Caracter
+	
+	DEFINIR  sueldo, horasTrabajadas, añosAntiguedad, horasExtra, haberBasico, liquidoPagable, egresos Como Real
+	
+	definir fechaiDía, fechaiMes, fechaiAño como numerico
+	
+	definir  carneIdentidad, diasTrabajo Como Entero
+	
+	definir diurnoPorcentaje, nocturnoPorcentaje, feriadosdomingoPorcentaje como reales
+	
+	definir diurno, nocturno, feriadosDomingo como reales
+	
+	definir sueldoDiurno, sueldoNocturno, sueldoFeriadosdomingo como reales 
+	
+	escribir "Buenas, ingrese datos de docente a analizar( nombre, CI, cargo, mes actual, horas trabajadas y sueldo, ingrese los datos en el orden indicado, por favor)" 
+	
+	leer nombreDocente, carneIdentidad, cargo, mesActual, horasTrabajadas, sueldo
+	
+	ESCRIBIR "Hola de nuevo,", nombreDocente "!" "Eres" cargo, "Estamos en el mes " mesActual, "Trabajaste un total de " horasTrabajadas "hrs" "Tu sueldo suele rondar por los" sueldo "bs"
+	
+	escribir "Usted trabajo horas extras? Si es un sí ingrese la cantidad de horasExtra, si no, dejar en blanco"
+	
+	leer horasExtra
+	
+	si horasExtra = horasExtra Entonces
+		
+		escribir "Las horas de trabajo extra son: " horasExtra
+		
+		escribir "Para calcular lo que le deben de pagar por las horas extra, ingrese los porcentajes de paga en condiciones: diurna, nocturna y feriados o domingos en su país (ingrese los datos en el orden mencionado y no coloque el simbolo de porcentaje "
+		
+		leer diurno, nocturno, feriadosDomingo
+		
+		diurnoPorcentaje = diurno * 0.01 + 1
+		
+		nocturnoPorcentaje = nocturno * 0.01 + 1 // 1 es el 100 porciento expresado en numeros para poder calcular el sueldo con horas extra
+		
+		feriadosdomingoPorcentaje = feriadosDomingo * 0.01 + 1 
+		
+		sueldoDiurno = horasExtra * (sueldo / horasTrabajadas) * diurnoPorcentaje
+		
+		sueldoNocturno = horasExtra * (sueldo / horasTrabajadas) * nocturnoPorcentaje
+		
+		sueldoFeriadosdomingo = horasExtra * (sueldo / horasTrabajadas) * feriadosdomingoPorcentaje
+		
+		escribir "Calculando..."
+		
+		esperar 2 Segundos
+		
+		escribir "Tu sueldo segun tus horas extra y condiciones es: sueldo por trabajo diurno: "  sueldoDiurno " sueldo por trabajo nocturno: " sueldoNocturno " sueldo por trabajo en feriados o domingos: " sueldoFeriadosdomingo
+		
+	sino 
+		Escribir "usted no tiene horas extra" 
+		
+	FinSi
+	
+	escribir "Prosigamos con datos de descuento de tu dinero. Por favor, vuelve a ingresar tu sueldo" 
+	
+	leer sueldo
+	
+	si horasExtra = 0 Entonces
+		
+		haberBasico = sueldo
+		
+		egresos = (haberBasico *0.5) / 100
+		
+		liquidoPagable = haberBasico - egresos 
+		
+	sino
+		escribir "Usted trabajo horas extra"
+		
+		liquidoPagable = (haberBasico + sueldoDiurno) - egresos
+		
+		liquidoPagable = (haberBasico + sueldoNocturno) - egresos
+		
+		liquidoPagable = (haberBasico + sueldoFeriadosdomingo) - egresos
+ 	
+	FinSi
+	
+	
+	escribir "Calculando..." 
+	
+	esperar 2 Segundos
+	
+	Escribir "Lo que se descontara de tu sueldo será " egresos "bs" " Entonces, te van a pagar " liquidoPagable "bs"
+	
+FinAlgoritmo
